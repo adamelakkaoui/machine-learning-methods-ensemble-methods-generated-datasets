@@ -1,0 +1,40 @@
+# Machine Learning Methods (Ensemble methods & Generated datasets)
+
+Academic study of manual ensemble-learning implementations and synthetic dataset generation, compared with scikit-learn.
+
+## Contents
+
+- `src/random_forest.py`: manual bootstrap forest for binary classification, Gini splits, majority vote, and a scikit-learn comparison.
+- `src/gradient_boosting.py`: manual regression trees fitted sequentially to residuals, plus a scikit-learn comparison.
+- `src/generated_datasets.py`: manual Gaussian-cluster generation compared with `make_classification`.
+- `notebooks/`: cleaned copies of the submitted notebooks with outputs removed.
+
+The submitted notebooks recorded `0.719` versus `0.730` accuracy for the manual and scikit-learn forest, and MSE `2858.725` versus `2849.616` for manual and scikit-learn gradient boosting. Those figures describe the submitted runs; the corrected scripts are re-run separately and their observed results are recorded in `VERIFICATION.md`.
+
+## Portfolio corrections
+
+- The manual forest now samples a square-root-sized feature subset at each node, matching the random-feature idea described in the report; the submitted notebook used all features at every split.
+- The manual gradient-boosting model now stores its training-target mean instead of reading a global `y_train` variable during prediction.
+- A fixed NumPy seed makes the script comparison reproducible.
+
+French pedagogical function names and the step-by-step implementation style are preserved.
+
+## Installation and use
+
+```bash
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# Linux/macOS: source .venv/bin/activate
+python -m pip install -r requirements.txt
+python src/random_forest.py
+python src/gradient_boosting.py
+python src/generated_datasets.py
+```
+
+## Limitations
+
+These are teaching implementations, not drop-in replacements for scikit-learn. The forest uses only five shallow trees in the example, threshold search is exhaustive, and the comparison does not include confidence intervals or repeated cross-validation. The diabetes target is converted into a binary label with the coursework threshold `> 140` for the classification example.
+
+## Author
+
+Adam El Akkaoui
