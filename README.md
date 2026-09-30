@@ -1,5 +1,7 @@
 # Machine Learning Methods (Ensemble methods & Generated datasets)
 
+![MACHINE LEARNING — Manual ensembles and generated datasets](assets/portfolio-banner.svg)
+
 Academic study combining pedagogical implementations of Random Forest and Gradient Boosting with a separate exercise on generated classification datasets. The manual estimators are compared with scikit-learn while preserving the original step-by-step French function naming.
 
 ## Contents and data provenance
