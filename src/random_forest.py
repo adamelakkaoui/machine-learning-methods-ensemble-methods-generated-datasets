@@ -44,11 +44,7 @@ def construire_arbre(X, y, profondeur_max, profondeur=0):
     if profondeur == profondeur_max or len(np.unique(y)) == 1 or len(y) < 2:
         return classe_majoritaire  # Feuille de l'arbre
     
-    # Correction portfolio : une forêt aléatoire sélectionne un sous-ensemble
-    # aléatoire de variables à chaque nœud (sqrt du nombre de variables).
-    nombre_variables = max(1, int(np.sqrt(X.shape[1])))
-    variables = np.random.choice(X.shape[1], size=nombre_variables, replace=False)
-    variable, seuil = meilleure_decoupe(X, y, variables)
+    variable, seuil = meilleure_decoupe(X, y, range(X.shape[1]))
     if variable is None:
         return classe_majoritaire  # Aucun split possible
 
@@ -96,7 +92,6 @@ X, y = diabetes.data, (diabetes.target > 140).astype(int)  # Classification bina
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Entraînement et test de notre version manuelle
-np.random.seed(42)
 foret_manuel = construire_foret(X_train, y_train, n_arbres=5, profondeur_max=3)
 y_pred_manuel = predire_foret(foret_manuel, X_test)
 accuracy_manuel = accuracy_score(y_test, y_pred_manuel)
