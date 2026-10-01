@@ -83,7 +83,6 @@ def predire_arbre(arbre, x):
 
 def gradient_boosting(X, y, n_arbres, profondeur_max, taux_apprentissage=0.1):
     """Entraîne un modèle de Gradient Boosting."""
-    prediction_initiale = float(np.mean(y))
     predictions = initialiser_predictions(y)
     arbres = []
 
@@ -94,16 +93,13 @@ def gradient_boosting(X, y, n_arbres, profondeur_max, taux_apprentissage=0.1):
 
         predictions += taux_apprentissage * np.array([predire_arbre(arbre, x) for x in X])
 
-    # La moyenne d'entraînement fait partie du modèle et ne doit pas dépendre
-    # d'une variable globale lors de la prédiction.
-    return prediction_initiale, arbres
+    return arbres
 
 # %%
 
-def predire_foret_boosting(modele, X, taux_apprentissage=0.1):
+def predire_foret_boosting(arbres, X, taux_apprentissage=0.1):
     """Prédit les valeurs de X en utilisant une forêt de Gradient Boosting."""
-    prediction_initiale, arbres = modele
-    predictions = np.full(X.shape[0], prediction_initiale, dtype=np.float64)
+    predictions = np.full(X.shape[0], np.mean(y_train))
     
     for arbre in arbres:
         prediction_arbre = np.array([predire_arbre(arbre, x) for x in X])
@@ -119,8 +115,8 @@ X, y = data.data, data.target
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Entraînement du modèle manuel
-modele_manuel = gradient_boosting(X_train, y_train, n_arbres=50, profondeur_max=3)
-y_pred_manuel = predire_foret_boosting(modele_manuel, X_test)
+arbres = gradient_boosting(X_train, y_train, n_arbres=50, profondeur_max=3)
+y_pred_manuel = predire_foret_boosting(arbres, X_test)
 
 # Entraînement du modèle sklearn
 gb_sklearn = GradientBoostingRegressor(n_estimators=50, max_depth=3, learning_rate=0.1, random_state=42)
