@@ -1,7 +1,5 @@
 # Machine Learning Methods (Ensemble methods & Generated datasets)
 
-![MACHINE LEARNING — Manual ensembles and generated datasets](assets/portfolio-banner.svg)
-
 Academic study combining pedagogical implementations of Random Forest and Gradient Boosting with a separate exercise on generated classification datasets. The manual estimators are compared with scikit-learn while preserving the original step-by-step French function naming.
 
 ## Contents and data provenance
@@ -18,7 +16,6 @@ The Diabetes dataset is bundled by scikit-learn and is used for the ensemble-met
 ## Methods
 
 The manual forest performs bootstrap sampling, Gini-based splits, per-node random feature selection and majority voting. The boosting implementation starts from the training-target mean and fits shallow regression trees sequentially to residuals. These implementations are educational and intentionally much simpler than the optimized scikit-learn estimators.
-
 
 ## Installation and use
 
@@ -44,7 +41,6 @@ The academic report presents the following manual/scikit-learn comparisons:
 The project also compares a manually generated classification dataset with scikit-learn's `make_classification`, illustrating how generated datasets can be used to study and test machine-learning methods under controlled conditions.
 
 The report concludes that ensemble methods improve predictive performance by combining multiple models, while the from-scratch implementations make the underlying mechanisms—Gini impurity, bootstrapping, majority voting, residual fitting and additive prediction—explicit.
-
 
 ## Author
 
