@@ -17,17 +17,9 @@ The Diabetes dataset is bundled by scikit-learn and is used for the ensemble-met
 
 The manual forest performs bootstrap sampling, Gini-based splits, per-node random feature selection and majority voting. The boosting implementation starts from the training-target mean and fits shallow regression trees sequentially to residuals. These implementations are educational and intentionally much simpler than the optimized scikit-learn estimators.
 
-## Installation and use
+## Project files
 
-```bash
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# Linux/macOS: source .venv/bin/activate
-python -m pip install -r requirements.txt
-python src/random_forest.py
-python src/gradient_boosting.py
-python src/generated_datasets.py
-```
+The three academic exercises are available in the `notebooks/` and `src/` directories.
 
 ## Results
 
